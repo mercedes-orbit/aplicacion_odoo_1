@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="state_property_add_tag_action" model="ir.actions.act_window">
+            <field name="name">Crear Etiqueta</field>
+            <field name="res_model">state.property.tag</field>
+            <field name="view_mode">form</field>
+        </record>
+    </data>
+</odoo>

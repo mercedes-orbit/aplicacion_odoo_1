@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_state_property,moduloproyecto.state.property,moduloproyecto.model_state_property,base.group_user,1,1,1,1
+access_organismo,moduloproyecto.organismo,moduloproyecto.model_organismo,base.group_user,1,1,1,1
+access_state_property_type,moduloproyecto.state.property.type,moduloproyecto.model_state_property_type,base.group_user,1,1,1,1
+access_state_property_offer,moduloproyecto.state.property.offer,moduloproyecto.model_state_property_offer,base.group_user,1,1,1,1
+access_state_property_tag,moduloproyecto.state.property.tag,moduloproyecto.model_state_property_tag,base.group_user,1,1,1,1

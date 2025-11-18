@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="organismo_view_form" model="ir.ui.view">
+            <field name="name">organismo.view.form</field>
+            <field name="model">organismo</field>
+            <field name="arch" type="xml">
+                <form string="Fórmula">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="description" />
+                            <field name="numregistro" />
+                            <field name="priority" />
+                            <field name="start_date" />
+                            <field name="active" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="organismo_view_tree" model="ir.ui.view">
+            <field name="name">organismo.view.tree</field>
+            <field name="model">organismo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="numregistro" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="state_property_menu_option3_action" model="ir.actions.act_window">
+            <field name="name">Example View Organismo</field>
+            <field name="res_model">organismo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

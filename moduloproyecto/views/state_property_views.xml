@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--  OPCION MENU 1 - OPCION SUBMENU 1 -->
+        <record id="state_property_menu_option1_1_action" model="ir.actions.act_window">
+            <field name="name">Example View with Form 1</field>
+            <field name="res_model">state.property</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="state_property_form" model="ir.ui.view">
+            <field name="name">state_property.form</field>
+            <field name="model">state.property</field>
+            <field name="arch" type="xml">
+                <form string="State Property">
+                    <header>
+                        <button name="cancelarproperty" type="object" string="Cancelar" /> <!--name
+                        es el nombre de la funcion-->
+                        <button name="venderproperty" type="object" string="Vender" />
+                        <button name="%(moduloproyecto.state_property_add_tag_action)d" type="action" string="Crear Etiqueta" />
+                        <field name="state" widget="statusbar" statusbar_visible="new,Offer,Accepted,Sold,Canceled"/>
+                    </header>
+                    <sheet>
+                        <!-- <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />-->
+                        <group name="grupo_principal">
+                            <field name="name" />
+                            <group name="main">
+                                <field name="description" />
+                                <field name="postcode" />
+                                <field name="date_availability" />
+                                <field name="expected_price" />
+                                <field name="selling_price" />
+                                <field name="bedrooms" />
+                                <field name="active" />
+                                <field name="last_seen" />
+                                <field name="state" />
+                            </group>
+                            <group name="secondary">
+                                <field name="living_area" />
+                                <field name="facades" />
+                                <field name="garage" />
+                                <field name="garden" />
+                                <field name="garden_area" />
+                                <field name="garden_orientation" />
+                            </group>
+                            <group name="tres">
+                                <field name="state_property_type_id" />
+                                <field name="seller_id" />
+                                <field name="buyer_id" />
+                                <field name="sale_order_ids" />
+                                <field name="total" />
+                                <field name="text" />
+                                <field name="province" />
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page name="notebook1" string="string">
+                                <group name="nbg1">
+                                    <field name="state_property_offer_ids">
+                                        <tree>
+                                            <field name="price" />
+                                            <field name="partner_id" />
+                                            <field name="status" />
+                                            <button name="cancelaroferta" type="object"
+                                                string="Cancelar Oferta" icon="fa-level-down" /> <!--name
+                        es el nombre de la funcion-->
+                                            <button name="aprobaroferta" type="object"
+                                                string="AprobarOferta" icon="fa-check" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                        <group name="cuatro">
+                            <field name="state_property_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" /> <!--chat boton Send message -->
+                        <field name="message_ids" widget="mail_thread" /> <!--chat boton Send message -->
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="state_property_tree" model="ir.ui.view">
+            <field name="name">state_property.tree</field>
+            <field name="model">state.property</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle"/> 
+                    <field name="name" />
+                    <field name="postcode" />
+                    <field name="bedrooms" />
+                    <field name="expected_price" />
+                    <field name="selling_price" />
+                    <field name="available_from" />
+                    <field name="state" decoration-danger="bedrooms &lt; 1" decoration-bf="bedrooms == 1" decoration-it="bedrooms > 1" decoration-info="bedrooms > 2" decoration-muted="bedrooms > 3" decoration-primary="bedrooms > 4" decoration-success="bedrooms > 5" decoration-warning="bedrooms > 6" />
+                </tree>
+            </field>
+        </record>
+        <!--  OPCION MENU 1 - OPCION SUBMENU 2 -->
+        <record id="state_property_address_tree" model="ir.ui.view">
+            <field name="name">state_property_address_tree</field>
+            <field name="model">state.property</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="address" />
+                    <field name="postcode" />
+                    <field name="province" />
+                    <field name="country" />
+                </tree>
+            </field>
+        </record>
+        <record id="state_property_menu_option1_2_action" model="ir.actions.act_window">
+            <field name="name">Example View with Form 2</field>
+            <field name="res_model">state.property</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="moduloproyecto.state_property_address_tree" />
+        </record>
+        <!--  OPCION MENU 2 -->
+        <record id="vistaeditable" model="ir.ui.view"> <!-- Se le pone en el id el ref del action-->
+            <field name="name">state_property.treeventas</field>
+            <field name="model">state.property</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" readonly="expected_price == 0"/>
+                    <field name="expected_price" column_invisible="1" />
+                    <field name="address" required="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="state_property_menu_option2_action" model="ir.actions.act_window">
+            <field name="name">Example View Editable without Form</field>
+            <field name="res_model">state.property</field>
+            <field name="view_mode">tree</field> <!--  Si no le indicass form, no te sale el boton New -->
+            <field name="view_id" ref="moduloproyecto.vistaeditable" />  <!-- EN REF= se pone el
+        nombre de la vista que se define mas arriba -->
+        </record>
+        <!--  OPCION MENU 3 EN EL ARCHIVO organismo_views.xml-->
+
+
+        <!--  ESTE CODIGO ES PARA DEFINIR LOS ELEMENTOS DEL MENU SUPERIOR DEL MÓDULO
+        (id="state_property_root" se tiene que dejar asi, no cambiar)-->
+        <!-- SIEMPRE DEBAJO DE LOS ACTION -->
+        <!--  ************************************************************************ -->
+        <!-- Main Menu -->
+        <menuitem id="state_property_root" name="Nuevo Modulo"
+            web_icon="state_property,static/lupa.png"> <!--  NAME: es el titulo que se ve en el
+            recuadro del nuevo modulo -->
+            <!-- Menu First Action -->
+            <menuitem id="state_property_menu_option1"
+                name="First Action">
+                <menuitem id="state_property_menu_option1_1"
+                    action="state_property_menu_option1_1_action"
+                    name="Option 1" />
+                <menuitem id="state_property_menu_option1_2"
+                    action="state_property_menu_option1_2_action"
+                    name="Option 2" />
+            </menuitem>
+            <!-- Menu Second Action -->
+            <menuitem id="state_property_menu_option2"
+                name="Second Action" action="state_property_menu_option2_action"
+            />
+        </menuitem>
+
+        <!-- Menu Third Action -->
+        <menuitem id="state_property_menu_option3"
+            name="Third Action" parent="state_property_root"
+            action="state_property_menu_option3_action"
+        />
+
+        <!-- Menu Four Action -->
+        <menuitem id="state_property_menu_option4"
+            name="Types" parent="state_property_root"
+            action="moduloproyecto.state_property_menu_option4_action"
+        />
+
+        <!-- Menu Fifth Action -->
+        <menuitem id="state_property_menu_option5"
+            name="Ofertas" parent="state_property_root"
+            action="moduloproyecto.state_property_menu_option5_action"
+        />
+
+        <!--  ************************************************************************ -->
+
+        <!--  ESTE CODIGO ES PARA LOS FILTROS DE BUSQUEDA DE TODAS LAS VISTAS -->
+        <record id="state_property_treebuscar" model="ir.ui.view">
+            <field name="name">state_property.treebuscar</field>
+            <field name="model">state.property</field>
+            <field name="arch" type="xml">
+                <search string="nosabemosparaquesirve">
+                    <field name="name" />
+                    <field name="postcode" />
+                    <field name="last_seen" />
+                    <filter
+                        name="state_groupby"
+                        string="State"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter
+                        name="garden_groupby"
+                        string="Garden Orientation"
+                        context="{'group_by': 'garden_orientation'}"
+                    />
+                    <filter
+                        name="cancel"
+                        string="Canceled"
+                        domain="[('state', '=', 'Canceled')]"
+                    />
+                    <filter name="No individuales" domain="[('bedrooms', '&gt;=', 1)]" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

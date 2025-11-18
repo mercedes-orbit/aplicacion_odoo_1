@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="state_property_type_view_form" model="ir.ui.view">
+            <field name="name">state.property.type.view.form</field>
+            <field name="model">state.property.type</field>
+            <field name="arch" type="xml">
+                <form string="Type">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="state_property_ids" />
+                            <field name="offers_ids" />
+                            <field name="offer_count" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="state_property_type_view_tree" model="ir.ui.view">
+            <field name="name">state.property.type_.view.tree</field>
+            <field name="model">state.property.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="state_property_ids" />
+                    <field name="offers_ids" />
+                    <field name="offer_count" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="state_property_menu_option4_action" model="ir.actions.act_window">
+            <field name="name">Vista Type</field>
+            <field name="res_model">state.property.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

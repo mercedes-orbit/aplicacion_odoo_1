@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="state_property_offer_form" model="ir.ui.view">
+            <field name="name">state_property_offer.form</field>
+            <field name="model">state.property.offer</field>
+            <field name="arch" type="xml">
+                <form string="State Property Offer">
+                    <sheet>
+                        <group name="main">
+                            <field name="partner_id" />
+                            <field name="price" />
+                            <field name="status" />
+                            <field name="state_property_id" />
+                            <field name="partner_id" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="state_property_offer_tree" model="ir.ui.view">
+            <field name="name">state_property_offer.tree</field>
+            <field name="model">state.property.offer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id" />
+                    <field name="price" />
+                    <field name="status" />
+                    <field name="property_type_id" />
+                    <field name="partner_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="state_property_menu_option5_action" model="ir.actions.act_window">
+            <field name="name">Vista Ofertas</field>
+            <field name="res_model">state.property.offer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
